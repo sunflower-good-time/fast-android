@@ -44,7 +44,7 @@ public class GLoading {
             synchronized (GLoading.class) {
                 if (mDefault == null) {
                     mDefault = new GLoading();
-                    mDefault.mAdapter = new DefaultGLoadingAdapter();
+//                    mDefault.mAdapter = new DefaultGLoadingAdapter();
                 }
             }
         }

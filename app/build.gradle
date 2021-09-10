@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':network')
     // 循环引入第三方库
     app_dependencies.each {k, v ->
         // if (k != "aa" && v != "cc") {}

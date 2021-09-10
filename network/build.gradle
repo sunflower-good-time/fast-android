@@ -27,10 +27,14 @@ android {
 }
 
 dependencies {
-
-
     implementation app_dependencies.appcompat
     implementation app_dependencies.material
     implementation app_dependencies.retrofit
     implementation app_dependencies.converter_gson
+    implementation app_dependencies.rxjava
+    implementation app_dependencies.rxjava2_adapter
+    implementation app_dependencies.rxjava_adapter
+    implementation app_dependencies.okhttp_logging
+    implementation app_dependencies.rxandroid
+    implementation app_dependencies.rx_android2
 }
