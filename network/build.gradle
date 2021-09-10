@@ -1,13 +1,9 @@
 plugins {
     id 'com.android.library'
 }
-
-
 // 定义变量，也可以不定义变量
 def app_android = this.rootProject.ext.app_android;
 def app_dependencies = this.rootProject.ext.app_dependencies;
-
-
 android {
     compileSdk 30
 
@@ -28,16 +24,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    dataBinding {
-        enabled = true
-    }
 }
 
 dependencies {
-    // 循环引入第三方库
-    app_dependencies.each {k, v ->
-        // if (k != "aa" && v != "cc") {}
-        implementation v
-    }
+
+
+    implementation app_dependencies.appcompat
+    implementation app_dependencies.material
+    implementation app_dependencies.retrofit
+    implementation app_dependencies.converter_gson
 }
