@@ -1,11 +1,14 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 // 定义变量，也可以不定义变量
 def app_android = this.rootProject.ext.app_android;
 def app_dependencies = this.rootProject.ext.app_dependencies;
+def packageNameForAPT = this.rootProject.ext.packageNameForAPT;
 
 android {
     compileSdk 30
@@ -35,13 +38,24 @@ android {
     dataBinding {
         enabled = true
     }
+
+    kapt {
+        arguments {
+            arg("moduleName", project.getName())
+            arg("packageNameForAPT", packageNameForAPT)
+        }
+    }
 }
 
 dependencies {
-    implementation project(path: ':network')
+    implementation project(path: ':base')
+    implementation project(path: ':source_annotation')
+    kapt project(path: ':source_compiler')
+
     // 循环引入第三方库
     app_dependencies.each {k, v ->
         // if (k != "aa" && v != "cc") {}
         implementation v
     }
+
 }

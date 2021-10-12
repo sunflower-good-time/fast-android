@@ -20,10 +20,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-/**
- * Created by Allen on 2017/7/20.
- * 保留所有版权，未经允许请不要分享到互联网和其他人
- */
+
 public abstract class ApiBase {
     protected Retrofit retrofit;
     protected static INetworkRequestInfo networkRequestInfo;
@@ -73,7 +70,7 @@ public abstract class ApiBase {
     /**
      * 封装线程管理和订阅的过程
      */
-    protected void ApiSubscribe(Observable observable, Observer observer) {
+    public void ApiSubscribe(Observable observable, Observer observer) {
         observable.subscribeOn(io.reactivex.schedulers.Schedulers.io())
                 .unsubscribeOn(io.reactivex.schedulers.Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
