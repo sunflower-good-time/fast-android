@@ -22,13 +22,10 @@ public abstract class IRoomDataSource<P, T, Dao> extends BaseApplicationDataSour
     public IRoomDataSource(@NonNull Application application) {
         super(application);
         mRequest = new MutableLiveData<>();
-
-
-
-//        // 每次查询都会返回一个新的liveData，通过switchMap转化后，始终只有一个liveData在进行回调
-//        Transformations.switchMap(mRequest, this::query).observeForever(t -> {
-//            if (mCallBack != null) mCallBack.accept(t);
-//        });
+        // 每次查询都会返回一个新的liveData，通过switchMap转化后，始终只有一个liveData在进行回调
+        Transformations.switchMap(mRequest, this::query).observeForever(t -> {
+            if (mCallBack != null) mCallBack.accept(t);
+        });
     }
 
     @Override

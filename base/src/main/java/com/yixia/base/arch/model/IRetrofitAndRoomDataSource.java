@@ -9,6 +9,10 @@ import androidx.lifecycle.LiveData;
 
 import com.yixia.base.arch.model.impl.IRetrofit;
 import com.yixia.base.arch.model.impl.IRoom;
+import com.yixia.base.arch.net.NetApi;
+import com.yixia.network.ApiBase;
+import com.yixia.network.errorhandler.ExceptionHandle;
+import com.yixia.network.observer.BaseObserver;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,14 +30,14 @@ public abstract class IRetrofitAndRoomDataSource<P, NetT, DbT, Dao> extends IDbA
 
     @Override
     protected void fromNet(@Nullable P request, @NonNull Consumer<NetT> callback) {
-        getCall(request).enqueue(new Callback<NetT>() {
+        NetApi.getInstance().ApiSubscribe(getCall(request), new BaseObserver<NetT>(){
             @Override
-            public void onResponse(Call<NetT> call, Response<NetT> response) {
-                callback.accept(response.isSuccessful() ? response.body() : null);
+            public void onNext(@NonNull NetT netT) {
+                callback.accept(netT);
             }
 
             @Override
-            public void onFailure(Call<NetT> call, Throwable t) {
+            public void onError(ExceptionHandle.ResponeThrowable e) {
                 callback.accept(null);
             }
         });

@@ -3,6 +3,7 @@ package com.yixia.base.arch.model.impl;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 
 /**
@@ -11,5 +12,5 @@ import retrofit2.Call;
  */
 public interface IRetrofit<P, T> {
     @NonNull
-    Call<T> getCall(@Nullable P request);
+    Observable<T> getCall(@Nullable P request);
 }

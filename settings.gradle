@@ -10,3 +10,7 @@ rootProject.name = "fast-android"
 include ':app'
 include ':base'
 include ':network'
+include ':benchmark'
+include ':source_annotation'
+include ':source_api'
+include ':source_compiler'

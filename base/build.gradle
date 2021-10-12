@@ -40,4 +40,6 @@ dependencies {
         // if (k != "aa" && v != "cc") {}
         implementation v
     }
+    api project(path: ':network')
+//    compileOnly(app_dependencies.rxjava)
 }
