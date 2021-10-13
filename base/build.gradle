@@ -36,10 +36,16 @@ android {
 
 dependencies {
     // 循环引入第三方库
-    app_dependencies.each {k, v ->
-        // if (k != "aa" && v != "cc") {}
-        implementation v
-    }
+//    app_dependencies.each {k, v ->
+//        // if (k != "aa" && v != "cc") {}
+//        implementation v
+//    }
+    implementation app_dependencies.ktxcore
+    implementation app_dependencies.appcompat
+    implementation app_dependencies.material
+    compileOnly(app_dependencies.retrofit)
+    compileOnly(app_dependencies.rxjava2_adapter)
+    compileOnly(app_dependencies.rxjava_adapter)
     api project(path: ':network')
-//    compileOnly(app_dependencies.rxjava)
+    compileOnly(app_dependencies.rxjava)
 }
